@@ -62,3 +62,40 @@ p {
   justify-content: center;
   background-color: black;
 }
+
+.van_card {  
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.vans {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  
+}
+
+.vans_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+.van_button_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+button {
+  border: none;
+  background-color: bisque;
+  width: 100px;
+  height: 30px;
+}

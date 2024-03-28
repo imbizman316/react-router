@@ -3,78 +3,30 @@ import ReactDOM from 'react-dom/client';
 import './components/react_router_6/router.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Home from './components/react_router_6/pages/Home';
+import About from './components/react_router_6/pages/About';
+import Vans from './components/react_router_6/pages/Vans';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-function Header() {
-  return (
-    <div className='header'>
-        <Link to="/">#VANLIFE</Link>        
-        <div className='headerRight'>
-          <nav>
-            <Link to="/about">About</Link>
-            <Link to="/vans">Vans</Link>
-          </nav>
-        </div>      
-    </div>
-  )
-}
-
-function Footer() {
-  return (
-    <div className='footer'>
-      <h5>2024 #VANLIFE</h5>
-    </div>
-  )
-}
-
-function Home() {
-  return (    
-    <>
-      <Header />
-      <div className='home'>
-        <h1>You got the travel plans, we got the travel vans.</h1>
-        <p>Add adventure to your life by joining the #vanlife movement.</p>
-        <p>Rent the perfect van to make your perfect road trip.</p>
-        <button className='home_button'>Find your van</button>
-      </div>      
-      <Footer />
-    </>
-  )
-}
-
-function About() {
-  return (
-    <>
-      <Header/>
-      <h1>
-        This is ABOUT, YO
-      </h1>
-      <Footer/>
-    </>
-  )
-}
-
-function Vans() {
-  return (
-    <>
-    <Header />
-      <h1>
-        This is VANS
-      </h1>
-    <Footer />
-    </>
-  )
-}
 
 root.render(
   // <React.StrictMode>    
     <BrowserRouter>
+      <header className='header'>
+        <Link to="/">#VanLife</Link>
+        <nav>
+          <Link to="/about">About</Link>
+          <Link to="/vans">Vans</Link>
+        </nav>
+      </header>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/vans" element={<Vans/>} />
       </Routes>
+      <div className='footer'>
+        <h4>2024 #Vanlife by Mike</h4>
+      </div>
     </BrowserRouter>
     // {/* <App /> */}
   // {/* </React.StrictMode> */}
