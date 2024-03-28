@@ -50,7 +50,7 @@ function About() {
     <>
       <Header/>
       <h1>
-        This is ABOUT
+        This is ABOUT, YO
       </h1>
       <Footer/>
     </>
