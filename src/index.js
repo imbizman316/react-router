@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/react_router_6/pages/Home';
 import About from './components/react_router_6/pages/About';
 import Vans from './components/react_router_6/pages/Vans';
+import VanDetail from './components/react_router_6/pages/VanDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -23,6 +24,7 @@ root.render(
         <Route path="/" element={<Home/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/vans" element={<Vans/>} />
+        <Route path='/vans/:id' element={<VanDetail/>}/>
       </Routes>
       <div className='footer'>
         <h4>2024 #Vanlife by Mike</h4>

@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import { BrowserRouter, Link } from "react-router-dom"
+import VanDetail from "./VanDetail"
 
 export default function Vans() {
 
@@ -11,7 +13,7 @@ export default function Vans() {
       const response = await fetch("https://pixabay.com/api/?key=40812056-f3b293341e49fa6b97eab62e5&q=van+car&image_type=photo")
       const data = await response.json()
 
-      console.log(data.hits)
+      // console.log(data.hits)
       
       setVans(data.hits)      
 
@@ -31,6 +33,19 @@ export default function Vans() {
 
   },[])
 
+  const vanElements = vans.map((item) => {
+    return (
+      <Link to={`/vans/${item.id}`} element={<VanDetail/>}>
+        <div className="van_card" onClick={()=>{}}>
+          <div style={{backgroundImage: `url(${item.webformatURL})`, height: '200px', width: '200px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', border: '1px black solid', borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}/>            
+          <div className="vans_bottom">
+            <h5 style={{textAlign: 'center'}}>{item.tags}</h5>
+            <h5 style={{color: "red"}}>{item.likes} likes</h5>
+          </div>
+        </div>
+      </Link>          
+    )
+  })
 
 
   return (
@@ -43,17 +58,7 @@ export default function Vans() {
         <h5>Clear filters</h5>
       </div>
       <div className="vans">      
-        {vans.map((item) => {
-          return (          
-            <div className="van_card">
-              <div style={{backgroundImage: `url(${item.webformatURL})`, height: '200px', width: '200px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', border: '1px black solid', borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}/>            
-              <div className="vans_bottom">
-                <h5 style={{textAlign: 'center'}}>{item.tags}</h5>
-                <h5 style={{color: "red"}}>{item.likes} likes</h5>
-              </div>
-            </div>
-          )
-        })}
+        {vanElements}
       </div>      
     </>
   )
