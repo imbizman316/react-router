@@ -59,7 +59,7 @@ export default function Vans() {
       </div>
       <div className="vans">      
         {vanElements}
-      </div>      
+      </div>            
     </>
   )
 }
