@@ -50,6 +50,7 @@ export default function VanDetail() {
           <img src={detailData.webformatURL} alt={detailData.user}/>
           <h2>[{detailData.tags}] by {detailData.user}</h2>
           <h3>{detailData.likes} likes</h3>
+          <button>Rent this van</button>
         </div>        
       :
         <h2>Loading...</h2>

@@ -35,7 +35,7 @@ export default function Vans() {
 
   const vanElements = vans.map((item) => {
     return (
-      <Link to={`/vans/${item.id}`} element={<VanDetail/>}>
+      <Link to={`/vans/${item.id}`} element={<VanDetail/>} key={item.id}>
         <div className="van_card" onClick={()=>{}}>
           <div style={{backgroundImage: `url(${item.webformatURL})`, height: '200px', width: '200px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', border: '1px black solid', borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}/>            
           <div className="vans_bottom">
@@ -66,3 +66,5 @@ export default function Vans() {
 
 //webformatURL
       //tags
+
+

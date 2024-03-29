@@ -7,28 +7,28 @@ import Home from './components/react_router_6/pages/Home';
 import About from './components/react_router_6/pages/About';
 import Vans from './components/react_router_6/pages/Vans';
 import VanDetail from './components/react_router_6/pages/VanDetail';
+import Layout from './components/react_router_6/Layout';
+import Dashboard from './components/react_router_6/pages/Host/Dashboard';
+import Income from './components/react_router_6/pages/Host/Income';
+import Reviews from './components/react_router_6/pages/Host/Reviews';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   // <React.StrictMode>    
-    <BrowserRouter>
-      <header className='header'>
-        <Link to="/">#VanLife</Link>
-        <nav>
-          <Link to="/about">About</Link>
-          <Link to="/vans">Vans</Link>
-        </nav>
-      </header>
+    <BrowserRouter>      
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/vans" element={<Vans/>} />
-        <Route path='/vans/:id' element={<VanDetail/>}/>
-      </Routes>
-      <div className='footer'>
-        <h4>2024 #Vanlife by Mike</h4>
-      </div>
+        <Route element={<Layout/>}>
+          <Route path="/" element={<Home/>} />          
+          <Route path="/about" element={<About/>} />
+          <Route path="/vans" element={<Vans/>} />
+          <Route path='/vans/:id' element={<VanDetail/>}/>
+          <Route path="/host" element={<Dashboard/>}>
+            <Route path="/host/income" element={<Income/>} />
+            <Route path="/host/reviews" element={<Reviews/>} />
+          </Route>
+        </Route>
+      </Routes>      
     </BrowserRouter>
     // {/* <App /> */}
   // {/* </React.StrictMode> */}
