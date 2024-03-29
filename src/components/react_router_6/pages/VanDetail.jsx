@@ -38,7 +38,7 @@ export default function VanDetail() {
 
     getDetail()
 
-  },[])
+  },[params])
 
   console.log(detailData)
 
