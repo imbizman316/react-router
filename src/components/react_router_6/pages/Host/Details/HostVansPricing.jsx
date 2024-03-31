@@ -1,7 +1,14 @@
 import React from 'react'
+import {useOutletContext} from 'react-router-dom'
 
 export default function HostVansPricing() {
+
+  const targetVan = useOutletContext()
+
   return (
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem ipsa dolorem hic sapiente, eaque adipisci nostrum dolores vel repellendus amet doloremque tenetur. Unde incidunt a tempore quam fuga impedit debitis!</p>
+    <div>
+      <h3>Likes: {targetVan.likes}</h3>
+      <h3>Views: {targetVan.views}</h3>
+    </div>
   )
 }

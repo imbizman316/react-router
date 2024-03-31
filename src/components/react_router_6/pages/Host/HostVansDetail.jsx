@@ -43,7 +43,7 @@ export default function HostVansDetail() {
           <h5>{targetVan.likes} likes</h5>
         </div>
       </div>
-      <div className='host-vans-detail-nav'>
+      <nav className='host-vans-detail-nav'>
         <NavLink 
           end
           style={({isActive}) => isActive ? activeStyle : null}
@@ -54,8 +54,8 @@ export default function HostVansDetail() {
         <NavLink 
           style={({isActive}) => isActive ? activeStyle : null}
           to="photos">Photos</NavLink>
-      </div>
-      <Outlet/>
+      </nav>
+      <Outlet context={targetVan}/>
     </div>
   )
 }

@@ -39,6 +39,7 @@ root.render(
             <Route path="reviews" element={<Reviews/>} />
 
             <Route path="vans" element={<HostVans/>} />
+
             <Route path="vans/:id" element={<HostVansDetail/>} >
               <Route index element={<HostVansDetails/>}/>
               <Route path="pricing" element={<HostVansPricing/>}/>
@@ -54,4 +55,3 @@ root.render(
 );
 
 reportWebVitals();
-

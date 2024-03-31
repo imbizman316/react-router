@@ -1,7 +1,13 @@
 import React from 'react'
+import {useOutletContext} from 'react-router-dom'
 
 export default function HostVansPhotos() {
+
+  const targetVan = useOutletContext()
+
   return (
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur esse vel, ducimus quasi molestiae culpa velit sapiente debitis dolorum voluptas, obcaecati consectetur inventore ex dolor sit praesentium! Molestias, at cumque?</p>
+    <div>    
+      <img src={targetVan.webformatURL} alt={targetVan.tags}/>
+    </div>
   )
 }
