@@ -26,9 +26,9 @@ nav > a {
 }
 
 p {
-  opacity: 0.6;
-  color: white;
-  background-color: black;
+  opacity: 0.9;
+  color: black;
+  background-color: white;
   filter: brightness(100%);  
 }
 
@@ -134,4 +134,53 @@ button {
 
 a:hover {
   text-decoration: underline;
+}
+
+.host-vans {
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 110px;
+  width: 400px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: left;  
+  margin-bottom: 10px;
+}
+
+.host-vans img {
+  height: 90px;
+  margin-right: 10px;
+}
+
+.host-vans-detail {
+  display: flex;
+  border: 1px solid black;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.host-vans-detail img {
+  height: 130px;
+}
+
+.host-vans-detail-nav {
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  gap: 30px;
+  margin-left: 10px;
+}
+
+.sticker {
+  background-color: tomato;
+  width: 90px;
+  padding: 10px;
+  display: flex;
+  align-items:center ;
+  justify-content: center;
+  border-radius: 10px;
+  color: white;
 }

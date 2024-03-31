@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <div>
       <header className='header'>
-        <NavLink to="/">#VanLife</NavLink>
+        <Link to="/">#VanLife</Link>
         <nav className='header_right'>
           <NavLink
             style={({isActive}) => isActive ? activeStyle : null}

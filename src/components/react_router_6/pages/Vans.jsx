@@ -33,7 +33,7 @@ export default function Vans() {
 
   },[])
 
-  const vanElements = vans.map((item) => {
+  const vanElements = vans?.map((item) => {
     return (
       <Link to={`/vans/${item.id}`} element={<VanDetail/>} key={item.id}>
         <div className="van_card" onClick={()=>{}}>

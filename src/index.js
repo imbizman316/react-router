@@ -12,11 +12,18 @@ import Dashboard from './components/react_router_6/pages/Host/Dashboard';
 import Income from './components/react_router_6/pages/Host/Income';
 import Reviews from './components/react_router_6/pages/Host/Reviews';
 import HostLayout from './components/react_router_6/HostLayout';
+import HostVans from './components/react_router_6/pages/Host/HostVans';
+import HostVansDetail from './components/react_router_6/pages/Host/HostVansDetail';
+import HostVansDetails from './components/react_router_6/pages/Host/Details/HostVansDetails';
+import HostVansPricing from './components/react_router_6/pages/Host/Details/HostVansPricing';
+import HostVansPhotos from './components/react_router_6/pages/Host/Details/HostVansPhotos';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  // <React.StrictMode>    
+  // <React.StrictMode>        
+
     <BrowserRouter>      
       <Routes>
         <Route path="/" element={<Layout/>}>
@@ -30,6 +37,14 @@ root.render(
             <Route index element={<Dashboard/>} />
             <Route path="income" element={<Income/>} />
             <Route path="reviews" element={<Reviews/>} />
+
+            <Route path="vans" element={<HostVans/>} />
+            <Route path="vans/:id" element={<HostVansDetail/>} >
+              <Route index element={<HostVansDetails/>}/>
+              <Route path="pricing" element={<HostVansPricing/>}/>
+              <Route path="photos" element={<HostVansPhotos/>}/>
+            </Route>
+            
           </Route>          
         </Route>
       </Routes>      
