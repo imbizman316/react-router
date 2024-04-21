@@ -1,60 +1,56 @@
-import React from "react"
-import {useParams} from 'react-router-dom'
+import React, { useState } from "react";
+import { Link, useParams, useLocation, useLoaderData } from "react-router-dom";
+import { getVan } from "../../../api";
 
-export default function VanDetail() {  
+export function loader({ params }) {
+  return getVan(params.id);
+}
 
-  const params = useParams()  
+export default async function VanDetail() {
+  const params = await useParams();
+  const vans = await useLoaderData();
 
-  const [detailData, setDetailData] = React.useState(null)
-  
-  async function getDetail () {
+  const detailData = vans.filter(
+    (item) => parseInt(item.id) === parseInt(params.id)
+  )[0];
 
-    try {
+  console.log(detailData);
 
-      const response = await fetch("https://pixabay.com/api/?key=40812056-f3b293341e49fa6b97eab62e5&q=van+car&image_type=photo")
-      const data = await response.json()      
+  const location = useLocation();
 
-      console.log(data)
-      console.log(params.id)
+  let backText = "all";
 
-      
-      data.hits.forEach((item) => {
-        // console.log(item)
-        parseInt(item.id) === parseInt(params.id) && setDetailData(item)
-      })
+  if (location.state.search.length === 0) {
+    backText = "all";
+  } else {
+    backText = location.state.search.split("type=")[1] + "+";
+  }
 
-    }
-
-    catch (err) {
-
-      throw err
-
-    }   
-
-
-  }  
-
-  React.useEffect(()=>{
-
-    getDetail()
-
-  },[params])
-
-  console.log(detailData)
+  console.log(backText);
 
   return (
     <div>
-      {detailData ?
-        <div className="van_detail">
-          <h5>id:{detailData.id}</h5>
-          <img src={detailData.webformatURL} alt={detailData.user}/>
-          <h2>[{detailData.tags}] by {detailData.user}</h2>
-          <h3>{detailData.likes} likes</h3>
-          <button>Rent this van</button>
-        </div>        
-      :
-        <h2>Loading...</h2>
-      }
+      <Link
+        relative="path"
+        to={
+          location.state.search.length > 0
+            ? `../?${location.state.search}`
+            : ".."
+        }
+        style={{ margin: "30px", marginTop: "30px", textDecoration: "none" }}
+      >
+        &larr; Back to {backText} vans
+      </Link>
+
+      <div className="van_detail">
+        <h5>id:{detailData.id}</h5>
+        <img src={detailData.webformatURL} alt={detailData.user} />
+        <h2>
+          [{detailData.tags}] by {detailData.user}
+        </h2>
+        <h3>{detailData.likes} likes</h3>
+        <button>Rent this van</button>
+      </div>
     </div>
-  )
+  );
 }

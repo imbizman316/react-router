@@ -1,70 +1,118 @@
-import { useState, useEffect } from "react"
-import { BrowserRouter, Link } from "react-router-dom"
-import VanDetail from "./VanDetail"
+import { useState, useEffect } from "react";
+import {
+  Link,
+  useSearchParams,
+  useLoaderData,
+  defer,
+  Await,
+} from "react-router-dom";
+import VanDetail from "./VanDetail";
+import { getVans } from "../../../api";
+import React from "react";
+import Error from "./Error";
+
+export function loader() {
+  return defer({ vans: getVans() });
+}
 
 export default function Vans() {
+  const dataPromise = useLoaderData();
+  // const [vans, setVans] = useState(data);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [error, setError] = useState(null);
 
-  const [vans, setVans] = useState([])
+  const typeFilter = searchParams.get("type");
 
-  async function getVans() {
-
-    try {
-
-      const response = await fetch("https://pixabay.com/api/?key=40812056-f3b293341e49fa6b97eab62e5&q=van+car&image_type=photo")
-      const data = await response.json()
-
-      // console.log(data.hits)
-      
-      setVans(data.hits)      
-
-    }
-
-    catch (err) {
-
-      throw err
-
-    }    
-
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>;
   }
 
-  useEffect(() => {
-
-    getVans()
-
-  },[])
-
-  const vanElements = vans?.map((item) => {
-    return (
-      <Link to={`/vans/${item.id}`} element={<VanDetail/>} key={item.id}>
-        <div className="van_card" onClick={()=>{}}>
-          <div style={{backgroundImage: `url(${item.webformatURL})`, height: '200px', width: '200px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', border: '1px black solid', borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}/>            
-          <div className="vans_bottom">
-            <h5 style={{textAlign: 'center'}}>{item.tags}</h5>
-            <h5 style={{color: "red"}}>{item.likes} likes</h5>
-          </div>
-        </div>
-      </Link>          
-    )
-  })
-
-
   return (
-    <>
+    <div className="vans_origin">
       <h2>Explore our van options</h2>
-      <div className="van_button_container">
-        <button>Single</button>
-        <button>Luxury</button>
-        <button>Rugged</button>
-        <h5>Clear filters</h5>
-      </div>
-      <div className="vans">      
-        {vanElements}
-      </div>            
-    </>
-  )
+      <React.Suspense fallback={<h2>Loading...</h2>}>
+        <Await resolve={dataPromise.vans}>
+          {(vans) => {
+            const displayVans = typeFilter
+              ? vans.filter((van) => van.likes >= parseInt(typeFilter))
+              : vans;
+
+            const vanElements = displayVans?.map((item) => {
+              return (
+                <Link
+                  to={`./${item.id}`}
+                  element={<VanDetail />}
+                  key={item.id}
+                  state={{ search: searchParams.toString() }}
+                >
+                  <div className="van_card">
+                    <div
+                      style={{
+                        backgroundImage: `url(${item.webformatURL})`,
+                        height: "200px",
+                        width: "200px",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        border: "1px black solid",
+                        borderTopLeftRadius: "10px",
+                        borderTopRightRadius: "10px",
+                      }}
+                    />
+                    <div className="vans_bottom">
+                      <h5 style={{ textAlign: "center" }}>{item.tags}</h5>
+                      <h5 style={{ color: "red" }}>{item.likes} likes</h5>
+                    </div>
+                  </div>
+                </Link>
+              );
+            });
+
+            return (
+              <>
+                <div className="van_button_container">
+                  <h4>Filter by Likes: </h4>
+                  <button
+                    onClick={() => setSearchParams({ type: 300 })}
+                    className={typeFilter === "300" ? "button-selected" : null}
+                  >
+                    300+
+                  </button>
+
+                  <button
+                    onClick={() => setSearchParams({ type: 200 })}
+                    d
+                    className={typeFilter === "200" ? "button-selected" : null}
+                  >
+                    200+
+                  </button>
+
+                  <button
+                    onClick={() => setSearchParams({ type: 100 })}
+                    className={typeFilter === "100" ? "button-selected" : null}
+                  >
+                    100+
+                  </button>
+
+                  {typeFilter ? (
+                    <button
+                      onClick={() => setSearchParams("")}
+                      className="van-type"
+                    >
+                      Clear filter
+                    </button>
+                  ) : (
+                    <button className="van-type-inactive">Clear filter</button>
+                  )}
+                </div>
+                <div className="vans">{vanElements}</div>
+              </>
+            );
+          }}
+        </Await>
+      </React.Suspense>
+    </div>
+  );
 }
 
 //webformatURL
-      //tags
-
-
+//tags

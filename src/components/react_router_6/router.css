@@ -1,5 +1,6 @@
 * {
-  background-color: white; 
+  padding: 0;
+  margin: 0;
 }
 
 nav > a {
@@ -13,12 +14,12 @@ nav > a {
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 40px;
 }
 
 .header_right {
   display: flex;
-  gap: 20px;  
+  gap: 20px;
 }
 
 .header > nav {
@@ -28,20 +29,40 @@ nav > a {
 p {
   opacity: 0.9;
   color: black;
-  background-color: white;
-  filter: brightness(100%);  
+  filter: brightness(100%);
 }
 
 .home {
-  background-image: url('../../images/backgroundImage.jpg');
+  /* background-image: url("../../images/backgroundImage.jpg"); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px;
-  filter: brightness(50%);      
+  padding-top: 300px;
+  /* padding: 80px; */
+  filter: brightness(100%);
+  min-height: 100vh;
+}
+
+.home h1 {
+  color: black;
+}
+
+.about {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 100px;
+}
+
+.about p {
+  color: black;
+  font-size: 20px;
 }
 
 .home_button {
@@ -49,6 +70,14 @@ p {
   height: 30px;
   font-size: medium;
   border-radius: 5px;
+  background-color: antiquewhite;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: 0;
+  margin-top: 20px;
 }
 
 .home_button:hover {
@@ -68,8 +97,11 @@ p {
   z-index: 10;
 }
 
-.van_card {  
-  
+.footer h3 {
+  color: white;
+}
+
+.van_card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,13 +114,12 @@ p {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(3, 1fr);
-  
 }
 
 .vans_bottom {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
 .van_button_container {
@@ -96,6 +127,7 @@ p {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  gap: 50px;
 }
 
 button {
@@ -105,12 +137,22 @@ button {
   height: 30px;
 }
 
+.button-selected {
+  border: none;
+  background-color: darksalmon;
+  color: white;
+  width: 100px;
+  height: 30px;
+}
+
 .van_detail {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 10px;
+  min-height: 100vh;
+  margin: 30px;
 }
 
 .host-nav-container {
@@ -128,7 +170,7 @@ button {
 }
 
 .nav_selected {
-  color: blue;  
+  color: blue;
   font-weight: bold;
 }
 
@@ -139,12 +181,12 @@ a:hover {
 .host-vans {
   border: 1px solid black;
   border-radius: 10px;
-  height: 110px;
+  min-height: 100vh;
   width: 400px;
   padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: left;  
+  justify-content: left;
   margin-bottom: 10px;
 }
 
@@ -160,6 +202,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: 15px;
+  min-height: 100vh;
 }
 
 .host-vans-detail img {
@@ -169,7 +212,7 @@ a:hover {
 .host-vans-detail-nav {
   display: flex;
   align-items: center;
-  justify-content:flex-start;
+  justify-content: flex-start;
   gap: 30px;
   margin-left: 10px;
 }
@@ -179,8 +222,92 @@ a:hover {
   width: 90px;
   padding: 10px;
   display: flex;
-  align-items:center ;
+  align-items: center;
   justify-content: center;
   border-radius: 10px;
   color: white;
+}
+
+.van_links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.notFound-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  width: 400px;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.notFound-button {
+  background-color: black;
+  color: white;
+  width: 400px;
+  height: 50px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: large;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login h1 {
+  margin-bottom: 20px;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login input {
+  width: 300px;
+  height: 25px;
+}
+
+.login button {
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.login h2 {
+  color: red;
+}
+
+.vans_origin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  margin: 40px;
+  min-height: 100vh;
+}
+
+.van-type-inactive {
+  background-color: whitesmoke;
+  color: grey;
 }
